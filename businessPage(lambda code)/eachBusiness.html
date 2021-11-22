@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>식당 페이지</title>
+		<!-- Description, Keywords and Author -->
+		<meta name="description" content="Your description">
+		<meta name="keywords" content="Your,Keywords">
+		<meta name="author" content="ResponsiveWebInc">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<!-- Styles -->
+	<!-- Bootstrap CSS -->
+	<link href="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font awesome CSS -->
+	<link href="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/css/font-awesome.min.css">		
+	<!-- Custom CSS -->
+	<link href="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/css/style.css" rel="stylesheet">
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/img/logo.png">
+	</head>
+	
+	<body>
+	
+		<div class="wrapper">
+		
+			<!-- header -->
+			<header>
+				<!-- navigation -->
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="container">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="https://x0hwwevlc3.execute-api.us-east-2.amazonaws.com/dev/mainPageLambda"><img class="img-responsive" src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/img/logo.png" alt="Logo" /></a>
+						</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="https://x0hwwevlc3.execute-api.us-east-2.amazonaws.com/dev/joinPage">회원가입</a></li>
+								<li><a href="https://x0hwwevlc3.execute-api.us-east-2.amazonaws.com/dev/logInPage">로그인</a></li>
+							<!-- <li><a href="mypage.html">마이페이지</a></li> -->
+									</ul>
+								</li>
+							</ul>
+						</div><!-- /.navbar-collapse -->
+					</div><!-- /.container-fluid -->
+				</nav>
+			</header>
+			
+			<!-- banner -->
+			<div class="banner" id="banner-container">
+
+                <script>
+                    const bannerConDiv = document.querySelector("#banner-container");
+
+                    const busId = window.location.href.slice(window.location.href.search(/busSysId/g) + 9, window.location.href.length);
+                    
+                    
+                    bannerConDiv.innerHTML = `
+                    <div class="container">
+                        <!-- heading -->
+                        <h2>${JSON.parse(localStorage.getItem(busId)).busiName} 입니다.</h2>
+                    </div>
+                    
+                    <!-- 이미지 -->
+                    <div class="container">
+                        <img class="img-responsive" src=${JSON.parse(localStorage.getItem(busId)).pictPathGroup} alt="Events" style="margin: auto;"/>
+                    </div>
+
+                    <div class="container">
+                        <p>평점 ${JSON.parse(localStorage.getItem(busId)).rating} 점 | ${JSON.parse(localStorage.getItem(busId)).city} ${JSON.parse(localStorage.getItem(busId)).detailAddr} ${JSON.parse(localStorage.getItem(busId)).streetAddr} </p>
+                    </div>
+                    <button onclick="https://x0hwwevlc3.execute-api.us-east-2.amazonaws.com/dev/uploadReviewPage">리뷰쓰기</button>`    //href onclick 링크 주의
+                </script>
+			</div>
+			<!-- banner end -->
+			
+
+		</div>	
+			<script defer>  // 특정 업체에 대한 리뷰 긁어오기
+				let reviewList;
+
+				function reviewSearch(e) {
+					//e.preventDefault();
+					const busId = window.location.href.slice(window.location.href.search(/busSysId/g) + 9, window.location.href.length);
+
+					fetch(`https://x0hwwevlc3.execute-api.us-east-2.amazonaws.com/dev/reviewDetailLambda?busSysId=${busId}`).then((res) => {
+						res.json().then(async (res) => {												
+							if (res.resFlag === 1) {      // 검색 실패
+							
+							}
+							else {  //검색 성공
+								res;		
+								reviewList = res.revDetails;	//음식점 리스트!!
+								console.log(reviewList);					
+															  //검색결과 화면으로 리다이렉트
+								await replaceEle();
+							}
+						});
+					});
+				}
+
+				const replaceEle = function() {
+					return new Promise(() => {
+						//
+						function addlike(i) {
+							
+						}
+						
+						function addhate(i) {
+							
+						}
+						//
+						
+						
+						const prevSearch = document.querySelector("#review_list");
+
+						console.log(prevSearch);						
+
+						let reviewEle = document.createElement("div");	//반복해서 나온 리뷰만큼 element 만들어서 붙여주기
+						reviewEle.className = 'row';
+						for (let i = 0; i < window.Object.keys(reviewList).length; i++) {
+
+							let ele = document.createElement('div');
+							ele.className = 'col-md-4 col-sm-4';
+							ele.innerHTML = `				
+							<div class="event-item-${reviewList[i].reviewId}">
+							
+								<!-- heading -->
+								
+								<h4>${reviewList[i].reviewContent}</h4>
+								<h5>리뷰 별점 : ${reviewList[i].rating} 점</h5>
+								<!-- sub text -->
+								<p class="revDate">리뷰 날짜 : ${reviewList[i].revDate} </p>
+								<span class="sub-text"><button onclick="${addlike(i)}">추천</button> : ${reviewList[i].likeNum}        <button onclick="${addhate(i)}">비추천</button> : ${reviewList[i].hateNum}</span>
+								<!-- paragraph -->
+                                <p>유저 신뢰도 : ${reviewList[i].trust}</p>		
+							</div>`;
+
+							reviewEle.appendChild(ele);
+						}
+
+
+						let searchReview = document.createElement("div");
+						searchReview.id = 'review_list';
+						searchReview.className = 'review_list';
+						searchReview.innerHTML = `
+						<!-- events search list -->
+						<div class="container">
+							<div class="default-heading">
+								<!-- heading -->
+								<h2>리뷰 결과</h2>
+							</div>
+							${reviewEle.outerHTML}
+						</div>
+						<!-- events end -->`;
+
+						const wrapper = document.querySelector(".wrapper");
+
+						if (prevSearch !== null) {
+							wrapper.removeChild(prevSearch);
+						}
+						wrapper.appendChild(searchReview);
+
+
+					})
+				}
+				
+				reviewSearch();
+			</script>
+			
+			<!-- footer -->
+			<footer>
+				<div class="container">
+					<p> 2021년도 여름 해커톤 광진구 점령전 </p>
+					<p class="copy-right">Copyright &copy; 2021 <a href="#">KCA</a> | Designed By : KCA, All rights reserved. </p>
+				</div>
+			</footer>
+
+		
+		
+		
+		<!-- Javascript files -->
+		<!-- jQuery -->
+		<script src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/js/jquery.js"></script>
+		<!-- Bootstrap JS -->
+		<script src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/js/bootstrap.min.js"></script>
+		<!-- Respond JS for IE8 -->
+		<script src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/js/respond.min.js"></script>
+		<!-- HTML5 Support for IE -->
+		<script src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/js/html5shiv.js"></script>
+
+		<!-- Custom JS / fetch -->
+		<script src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/js/custom.js"></script>
+	</body>	
+</html>

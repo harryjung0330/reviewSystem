@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<title>Main - 맛집 리뷰</title>
+	<!-- Description, Keywords and Author -->
+	<meta name="description" content="Your description">
+	<meta name="keywords" content="Your,Keywords">
+	<meta name="author" content="ResponsiveWebInc">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Styles -->
+	<!-- Bootstrap CSS -->
+	<link href="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font awesome CSS -->
+	<link href="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/css/font-awesome.min.css">		
+	<!-- Custom CSS -->
+	<link href="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/css/style.css" rel="stylesheet">
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/img/logo.png">
+</head>
+
+<body>
+
+	<div class="wrapper">
+	
+		<!-- header -->
+		<header>
+			<!-- navigation -->
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="https://x0hwwevlc3.execute-api.us-east-2.amazonaws.com/dev/mainPageLambda"><img class="img-responsive" src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/img/logo.png" alt="Logo" /></a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="https://x0hwwevlc3.execute-api.us-east-2.amazonaws.com/dev/joinPage">회원가입</a></li>
+							<li><a href="https://x0hwwevlc3.execute-api.us-east-2.amazonaws.com/dev/logInPage">로그인</a></li>
+							<!-- <li><a href="mypage.html">마이페이지</a></li> -->
+						</ul>
+					</div><!-- /.navbar-collapse -->
+				</div><!-- /.container-fluid -->
+			</nav>
+
+		</header>
+		
+		<!-- banner -->
+		<div class="banner">
+			<div class="container">
+				<!-- heading -->
+				<h1 style ="font-style: normal; font-weight: bold; color:whitesmoke">신뢰도 높은 리뷰, 객관적인 평점</h1>
+			</div>
+		<br><br><br>
+			<!-- 검색창 -->
+			<div class="container">
+				<form>		<!-- action="https://x0hwwevlc3.execute-api.us-east-2.amazonaws.com/dev/business" method="GET"-->
+					<label class="search-word" for="main-search">
+						<img class="img" src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/img/icon/search.jpg" width="23px">
+						<input id="main-search" class="HomeSearchInput" name="businame" type="text" maxlength="50" placeholder="식당을 입력해주세요">
+					</label>
+		
+					<button class="btn-search" type="submit" onclick="mainSearch(event)">검색</button>
+
+				</form>
+		
+			</div>
+		</div>
+		<!-- banner end -->
+		
+		<!-- events top food-->
+		<div class="top_food" id="top_food">
+			<div class="container">
+				<div class="default-heading">
+					<!-- heading -->
+					<h2 style ="background-color: d9ffd8;">신뢰도 있는 맛집 TOP3</mark></h2>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-sm-4">
+						<!-- event item -->
+						<div class="event-item">
+							<!-- image -->
+							<img class="img-responsive" src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/img/event/meat_pregident.jpg" style = "height: 150px" alt="Events">
+							<!-- heading -->
+							<h4><a href="#">고기대통령</a></h4>
+							<!-- sub text -->
+							<span class="sub-text">평점 4.5점</span>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<!-- event item -->
+						<div class="event-item">
+							<!-- image -->
+							<img class="img-responsive" src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/img/event/gop.jpg" style = "height: 150px" alt="Events">
+							<!-- heading -->
+							<h4><a href="#">대명소곱창</a></h4>
+							<!-- sub text -->
+							<span class="sub-text">평점 4.3점</span>
+							<!-- paragraph -->
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<!-- event item -->
+						<div class="event-item">
+							<!-- image -->
+							<img class="img-responsive" src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/img/event/kindnoodle.jpg" style = "height: 150px" alt="Events">
+							<!-- heading -->
+							<h4><a href="#">바른면집</a></h4>
+							<!-- sub text -->
+							<span class="sub-text">평점 4.0점</span>
+							<!-- paragraph -->
+							<p></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- events end -->
+		<hr>
+		<!-- events top user-->
+		<div class="top_user" id="top_user">
+			<div class="container">
+				<div class="default-heading">
+					<!-- heading -->
+					<h2 style ="background-color: d9ffd8;">신뢰적인 유저 TOP3</h2>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-sm-4">
+						<!-- event item -->
+						<div class="event-item">
+							<!-- image -->
+							<img class="img-responsive" src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/img/event/haiz.jpg" style = "height: 180px"  alt="Events">
+							<!-- heading -->
+							<h4><a href="#">헤이즈</a></h4>
+							<!-- sub text -->
+							<span class="sub-text">신뢰점수: 80점</span>
+							<!-- paragraph -->
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<!-- event item -->
+						<div class="event-item">
+							<!-- image -->
+							<img class="img-responsive" src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/img/event/chickengirl2.jpg"style = "height: 180px" alt="Events">
+							<!-- heading -->
+							<h4><a href="#">양민서</a></h4>
+							<!-- sub text -->
+							<span class="sub-text">신뢰점수: 70점</span>
+							<!-- paragraph -->
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<!-- event item -->
+						<div class="event-item">
+							<!-- image -->
+							<img class="img-responsive" src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/img/event/yt.jpg" style = "height: 180px" alt="Events">
+							<!-- heading -->
+							<h4><a href="#">염따</a></h4>
+							<!-- sub text -->
+							<span class="sub-text">신뢰점수: 60점</span>
+							<!-- paragraph -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- events end -->
+	</div>	
+		<script defer>
+			let busiList;
+
+			function mainSearch(e) {
+				e.preventDefault();
+				const searchWord = document.querySelector("#main-search");
+
+				fetch(`https://x0hwwevlc3.execute-api.us-east-2.amazonaws.com/dev/business?businame=${searchWord.value}`).then((res) => {
+					res.json().then(async (res) => {												
+						if (res.resFlag === 1) {      // 검색 실패
+						
+						}
+						else {  //검색 성공
+							res;		
+							busiList = res.businessList;	//음식점 리스트!!
+							console.log(busiList);					
+														//검색결과 화면으로 리다이렉트
+							await replaceEle();
+						}
+					});
+				});
+			}
+
+			const replaceEle = function() {
+				return new Promise(() => {
+					const topFood = document.querySelector("#top_food");
+					const topUser = document.querySelector("#top_user");
+
+					const prevSearch = document.querySelector("#business_list");
+				
+
+					let businessEle = document.createElement("div");	//반복해서 나온 음식점만큼 element 만들어서 붙여주기
+					businessEle.className = 'row';
+					for (let i = 0; i < window.Object.keys(busiList).length; i++) {
+
+						let ele = document.createElement('div');
+						ele.className = 'col-md-4 col-sm-4';
+						ele.innerHTML = `				
+						<div class="event-item-${busiList[i].busSysId}">
+							<!-- image -->
+							<img class="img-responsive" src=${busiList[i].pictPathGroup} alt="Events" />
+							<!-- heading -->
+							<a href=${`https://x0hwwevlc3.execute-api.us-east-2.amazonaws.com/dev/businessPage?busSysId=${busiList[i].busSysId}`} onclick="${storeBusi()}">
+								<h4>${busiList[i].busiName/*href에 알맞은 개별 식당 링크로 바꿀 것!*/}</h4>
+							</a>
+							<!-- sub text -->
+							<span class="sub-text">${busiList[i].rating}</span>
+							<!-- paragraph -->
+							<p>주소 : ${busiList[i].city} ${busiList[i].detailAddr} ${busiList[i].streetAddr} </p>
+						</div>`;
+
+						businessEle.appendChild(ele);
+
+						function storeBusi() { localStorage.setItem(busiList[i].busSysId, JSON.stringify(busiList[i])); }
+					}
+
+
+					let searchBusiness = document.createElement("div");
+					searchBusiness.id = 'business_list';
+					searchBusiness.className = 'business_list';
+					searchBusiness.innerHTML = `
+					<!-- events search list -->
+					<div class="container">
+						<div class="default-heading">
+							<!-- heading -->
+							<h2>음식점 검색 결과</h2>
+						</div>
+						${businessEle.outerHTML}
+					</div>
+					<!-- events end -->`;
+
+					const wrapper = document.querySelector(".wrapper");
+					if (prevSearch !== null) {
+						wrapper.removeChild(prevSearch);
+					}
+					wrapper.appendChild(searchBusiness);
+					wrapper.removeChild(topFood);
+					wrapper.removeChild(topUser);
+				})
+
+				
+			}
+			
+			
+
+		</script>
+		
+		<!-- footer -->
+		<footer>
+			<div class="container">
+				<p> 2021년도 여름 해커톤 광진구 점령전 </p>
+				<p class="copy-right">Copyright © 2021 <a href="#">KCA</a> | Designed By : KCA, All rights reserved. </p>
+			</div>
+		</footer>
+
+	
+	
+	
+
+		<!-- Javascript files -->
+		<!-- jQuery -->
+		<script src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/js/jquery.js"></script>
+		<!-- Bootstrap JS -->
+		<script src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/js/bootstrap.min.js"></script>
+		<!-- Respond JS for IE8 -->
+		<script src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/js/respond.min.js"></script>
+		<!-- HTML5 Support for IE -->
+		<script src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/js/html5shiv.js"></script>
+
+		<!-- Custom JS / fetch -->
+		<script src="https://webhowors212.s3.us-east-2.amazonaws.com/eatPlaceReview/js/custom.js"></script>
+	
+</body></html>
