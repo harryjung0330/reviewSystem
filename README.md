@@ -21,5 +21,8 @@ Aws Rds 데이터베이스 모델링
 ![image](https://github.com/harryjung0330/reviewSystem/blob/main/%EC%82%AC%EC%A7%84%ED%8C%8C%EC%9D%BC/ER.PNG)
 
 
-###역할
-저는 이 프로젝트에서 데이터베이스 모델링, 람다 프로그래밍, 시스템 아키텍쳐 구상을 맡았습니다. 
+### 역할
+저는 이 프로젝트에서 아래의 역할들을 맡았습니다:
+- 데이터베이스 모델링
+- 람다 프로그래밍
+- 시스템 아키텍쳐 구상
