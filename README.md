@@ -12,10 +12,11 @@
 ![image](https://github.com/harryjung0330/reviewSystem/blob/main/%EC%82%AC%EC%A7%84%ED%8C%8C%EC%9D%BC/%EB%A6%AC%EB%B7%B0%EC%8B%9C%EC%8A%A4%ED%85%9C%EA%B8%B0%EC%88%A0.PNG)
 - AWS S3 -> 이미지 파일 저장
 - AWS RDS -> 유저, 식당, 리뷰 정보 저장
-- AWS Lambda -> 유저의 트래픽 처리
+- AWS Lambda -> 유저의 트래픽 처리, ec2대신 람다를 사용하여 microservice architecture를 구현해 빠르게 개발
 - AWS apigateway -> 람다랑 연동해 유저의 트래픽을 받는다
 - python
 - HTML, CSS, javascript
+
 
 Aws Rds 데이터베이스 모델링
 ![image](https://github.com/harryjung0330/reviewSystem/blob/main/%EC%82%AC%EC%A7%84%ED%8C%8C%EC%9D%BC/ER.PNG)
